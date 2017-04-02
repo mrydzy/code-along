@@ -40,8 +40,10 @@ var ConversationPanel = (function() {
 
     var currentResponsePayloadSetter = Api.setResponsePayload;
     Api.setResponsePayload = function(newPayloadStr) {
+      var res = JSON.parse(newPayloadStr);
+      if (Store) Store.dispatch(res.context.action);
       currentResponsePayloadSetter.call(Api, newPayloadStr);
-      displayMessage(JSON.parse(newPayloadStr), settings.authorTypes.watson);
+      displayMessage(res, settings.authorTypes.watson);
     };
   }
 
