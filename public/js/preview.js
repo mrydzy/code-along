@@ -9,7 +9,7 @@ var Preview = (function() {
       .innerHTML = action.payload;
   }
 
-  function setText(action) {
+  function setContent(action) {
     iDoc.querySelector('.content')
       .innerHTML = action.payload;
   }
@@ -34,17 +34,12 @@ var Preview = (function() {
       .style.fontSize = fontSize + 'em';
   }
 
-  function changeTextSize(action) {
-    iDoc.querySelector('.content')
-      .innerHTML = action.payload;
-  }
-
   function changeTitleColor(action) {
     iDoc.querySelector('.title')
       .style.color = action.payload;
   }
 
-  function changeTextColor(action) {
+  function changeContentColor(action) {
     iDoc.querySelector('.content')
       .style.color = action.payload;
   }
@@ -65,16 +60,21 @@ var Preview = (function() {
       case 'CHANGE_TITLE_COLOR':
         changeTitleColor(action);
         break;
+      case 'CHANGE_TITLE_SIZE':
+        changeTitleSize(action);
+
+      case 'SET_CONTENT':
+        setContent(action);
       case 'CHANGE_CONTENT_COLOR':
-        changeTextColor(action);
+        changeContentColor(action);
         break;
+      case 'CHANGE_CONTENT_SIZE':
+        changeContentSize(action);
+        break;
+
       case 'CHANGE_BACKGROUND_COLOR':
         changeBackgroundColor(action);
         break;
-      case 'SET_CONTENT':
-        setText(action);
-      case 'CHANGE_TITLE_SIZE':
-        changeTitleSize(action);
       default:
         break;
     }
